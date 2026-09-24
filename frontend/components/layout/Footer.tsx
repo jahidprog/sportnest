@@ -4,35 +4,11 @@ import {
   MessageCircle,
   Mail,
   Phone,
-  Instagram,
-  Facebook,
-  Youtube,
-  Music2,
-  Twitter,
 } from "lucide-react";
 import { WHATSAPP_LINK } from "@/lib/constants";
 
-const K20_LABS_LINK =
-  "https://www.facebook.com/profile.php?id=61593360331585";
-
-// TODO: replace with your actual SportNest Facebook page URL.
-const FACEBOOK_LINK = "#";
-
-// TODO: replace with your real support number.
-const SUPPORT_PHONE = "+8809677666888";
-
-// TODO: replace with SportNest's real Facebook follower/following counts,
-// or fetch these dynamically via the Facebook Graph API if you want them live.
-const FACEBOOK_FOLLOWERS = "937K";
-const FACEBOOK_FOLLOWING = "1";
-
-const SOCIAL_LINKS = [
-  { name: "Instagram", href: "#", icon: Instagram },
-  { name: "TikTok", href: "#", icon: Music2 },
-  { name: "Facebook", href: FACEBOOK_LINK, icon: Facebook },
-  { name: "X", href: "#", icon: Twitter },
-  { name: "YouTube", href: "#", icon: Youtube },
-];
+const K20_LABS_LINK = "https://www.facebook.com/profile.php?id=61593360331585";
+const SUPPORT_PHONE = "+8801632773967";
 
 export default function Footer() {
   return (
@@ -172,7 +148,7 @@ export default function Footer() {
                     href={`tel:${SUPPORT_PHONE}`}
                     className="text-[17px] font-medium text-white transition-colors hover:text-[#f5a623]"
                   >
-                    {SUPPORT_PHONE}
+                    01632-773967
                   </a>
 
                   <p className="mt-1 text-[15px] text-white/60">
@@ -199,128 +175,11 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* ==================== SOCIAL ==================== */}
-            <div>
-              {/* Heading */}
-              <div className="mb-7 flex items-center gap-3">
-                <span className="text-2xl font-bold leading-none text-[#f5a623]">
-                  ✓
-                </span>
-
-                <h3 className="text-[16px] font-semibold uppercase tracking-wide">
-                  Follow us
-                </h3>
-              </div>
-
-              {/* Description */}
-              <p className="mb-7 max-w-sm text-[15px] leading-6 text-white/80">
-                Stay updated on our latest arrivals, exclusive promotions and
-                events.
+            <div className="flex items-center">
+              <p className="max-w-xs text-sm leading-7 text-white/70">
+                Questions about an order? Call us or chat on WhatsApp and our
+                customer service team will help.
               </p>
-
-              {/* Social Icons */}
-              <div className="mb-9 flex items-center gap-6">
-                {SOCIAL_LINKS.map(({ name, href, icon: Icon }) => (
-                  <a
-                    key={name}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={name}
-                    className="text-white transition-colors hover:text-[#f5a623]"
-                  >
-                    <Icon size={26} strokeWidth={2} />
-                  </a>
-                ))}
-
-                <a
-                  href="#"
-                  aria-label="Pinterest"
-                  className="text-white transition-colors hover:text-[#f5a623]"
-                >
-                  <span className="font-serif text-[26px] leading-none">
-                    ℘
-                  </span>
-                </a>
-              </div>
-
-              {/* ==================== FACEBOOK CARD ==================== */}
-              {/* Structure/classes mirror Fabrilife's markup; styled purely with
-                  Tailwind (no styled-jsx) so this stays usable in a Server Component. */}
-              <a
-                href={FACEBOOK_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fb-verify-card flex w-[320px] items-center gap-[10px] rounded-[10px] bg-[#FFFFFFCC] text-[#050505]"
-                style={{
-                  height: "67.09px",
-                  margin: "16px 0px",
-                  padding: "12px 14px",
-                  fontFamily:
-                    'Assistant, -apple-system, "system-ui", sans-serif',
-                }}
-              >
-                <div className="fb-verify-left flex shrink-0">
-                  {/* FB app shape */}
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <rect width="24" height="24" rx="6" fill="#1877F2" />
-                    <path
-                      d="M16.671 15.469l.532-3.469h-3.328v-2.25c0-.949.465-1.875 1.956-1.875h1.513V4.922S15.978 4.688 14.674 4.688c-2.726 0-4.51 1.653-4.51 4.646V12h-3.032v3.469h3.032V24h3.729v-8.531h2.778z"
-                      fill="#fff"
-                    />
-                  </svg>
-                </div>
-
-                <div className="fb-verify-right min-w-0 flex-1">
-                  <div className="fb-verify-title flex items-center gap-1.5 text-[16px] font-bold leading-tight">
-                    SportNest
-                    <span
-                      className="fb-badge flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full text-white"
-                      style={{ backgroundColor: "#0275D8" }}
-                      aria-label="Verified"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="12"
-                        height="12"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      >
-                        <path
-                          d="M5 12.5 9.2 17 19 7"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                    <div
-                      className="fb-verify-subtitle text-[14.4px] font-semibold"
-                      style={{ color: "#0275D8" }}
-                    >
-                      Follow
-                    </div>
-                  </div>
-
-                  <div
-                    className="fb-verify-sub mt-0.5 flex items-center gap-1.5 text-[13px]"
-                    style={{ color: "#666" }}
-                  >
-                    {FACEBOOK_FOLLOWERS} followers{" "}
-                    <span
-                      className="fb-follow-i inline-block h-[3px] w-[3px] shrink-0 rounded-full"
-                      style={{ backgroundColor: "#666" }}
-                      aria-hidden="true"
-                    />{" "}
-                    {FACEBOOK_FOLLOWING} following
-                  </div>
-                </div>
-              </a>
             </div>
           </div>
         </div>

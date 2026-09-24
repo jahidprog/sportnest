@@ -3,7 +3,8 @@
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
-export const WHATSAPP_NUMBER = "8801000000000"; // TODO: replace with the real business number
+// wa.me expects an international number without a leading + or local trunk 0.
+export const WHATSAPP_NUMBER = "8801632773967";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export const LOW_STOCK_THRESHOLD = 5;

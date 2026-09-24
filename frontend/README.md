@@ -208,3 +208,40 @@ your real domain later) added under Authorized JavaScript origins.
   it once either grows large.
 - Product ratings/reviews — explicitly deferred, no fake rating data
   added in the meantime.
+
+## Deployment, migrations, and backups
+
+The repository does not include a deployment platform or Docker setup. Deploy
+the frontend and Go API as separate services and provide their configuration
+through the hosting platform's secret/environment settings. At minimum, set
+the backend's `VERSION`, `SERVICE_NAME`, `HTTP_PORT`, `JWT_SECRET_KEY`,
+`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, and `DB_SSLMODE`.
+Use a long random JWT secret, restrict `ALLOWED_ORIGIN` to the deployed
+frontend origin, and set `GOOGLE_CLIENT_ID` / `NEXT_PUBLIC_GOOGLE_CLIENT_ID`
+to the same web OAuth client ID if Google sign-in is enabled. Set
+`NEXT_PUBLIC_API_URL` to the public API origin when building the frontend.
+WhatsApp order notifications additionally need Meta credentials
+(`WHATSAPP_TOKEN`, `WHATSAPP_PHONE_ID`, and optionally `WHATSAPP_ADMIN_PHONE`).
+
+Run database migrations as a release step before starting the new application
+version. The Go service applies pending SQL migrations from
+`backend/migrations` at startup; deploy one API instance during migrations so
+multiple replicas do not race to migrate. Take a PostgreSQL snapshot before
+schema changes and verify the migration completes before routing traffic.
+The migration runner applies forward migrations only; use reviewed restore or
+forward-fix procedures rather than assuming down migrations are an automatic
+production rollback.
+
+Schedule encrypted PostgreSQL backups with your database provider (or `pg_dump`)
+and define a retention period. Periodically restore a backup into a separate
+database and verify the app can read it. Uploaded product and banner images
+are stored under `UPLOAD_DIR` (default `./uploads`), outside PostgreSQL: persist
+and back up that directory, or move uploads to shared object storage before
+using ephemeral disks or multiple API instances. Set `UPLOAD_DIR` to a durable
+volume for a single-instance deployment.
+
+The support footer now uses the provided WhatsApp number. Social profiles and
+store addresses are omitted until their official URLs and verified location
+details are available. Product reviews and API pagination remain future feature
+work; they need product/business rules and response-contract design before
+they can be added safely.
